@@ -208,7 +208,7 @@ if __name__ == '__main__':
     # test_model_input["user_hist"] = test_user_hist
 
     # %%
-
+    pred_ts = model.predict(test_model_input, batch_size=2048)
 
     # %%
 
