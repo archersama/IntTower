@@ -18,7 +18,7 @@ from layers.interaction import LightSE
 class IntTower(BaseTower):
 
     def __init__(self, user_dnn_feature_columns, item_dnn_feature_columns, gamma=1, dnn_use_bn=True,
-                 dnn_hidden_units=(300, 300, 300), field_dim = 32, user_head=1,item_head=1, dnn_activation='relu', l2_reg_dnn=0, l2_reg_embedding=1e-5,
+                 dnn_hidden_units=(300, 300, 128), field_dim = 32, user_head=1,item_head=1, dnn_activation='relu', l2_reg_dnn=0, l2_reg_embedding=1e-5,
                  dnn_dropout = 0, init_std=0.0001, seed=124, task='binary', device='cpu', gpus=None,user_filed_size = 1,
                  item_filed_size = 1):
         super(IntTower, self).__init__(user_dnn_feature_columns, item_dnn_feature_columns,
