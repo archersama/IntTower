@@ -19,7 +19,7 @@ class DeepFM(BaseModel):
         self.filed_size = len(self.embedding_dict)
         self.SE = SENETLayer(self.filed_size, 3, seed, device)
 
-        self.sim_non_local = SimNonLocal(self.filed_size, 3, seed, device)
+
 
         self.use_fm = use_fm
         self.use_dnn = len(dnn_feature_columns) > 0 and len(dnn_hidden_units) > 0
@@ -40,7 +40,7 @@ class DeepFM(BaseModel):
     def forward(self, inputs):
         sparse_embedding_list, dense_value_list = self.input_from_feature_columns(inputs, self.dnn_feature_columns,
                                                                                self.embedding_dict)
-        sparse_embedding_input = torch.cat(sparse_embedding_list, dim=1)
+        # sparse_embedding_input = torch.cat(sparse_embedding_list, dim=1)
 
         # senet_output = self.SE(sparse_embedding_input)
 
