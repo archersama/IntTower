@@ -19,8 +19,8 @@ class FM(nn.Module):
         return cross_term
 
 
-class SimNonLocal(nn.Module):
-    """SENETLayer used in FiBiNET.
+class LightSE(nn.Module):
+    """LightSELayer used in IntTower.
       Input shape
         - A list of 3D tensor with shape: ``(batch_size,filed_size,embedding_size)``.
       Output shape
@@ -34,16 +34,14 @@ class SimNonLocal(nn.Module):
 
     """
 
-    def __init__(self, field_size, reduction_ratio=3, seed=1024, device='cpu',embedding_size=32):
-        super(SimNonLocal, self).__init__()
+    def __init__(self, field_size, seed=1024, device='cpu',embedding_size=32):
+        super(LightSE, self).__init__()
         self.seed = seed
         self.softmax = nn.Softmax(dim=1)
         self.field_size = field_size
-        # self.reduction_size = max(1, filed_size // reduction_ratio)
         self.embedding_size = embedding_size
         self.excitation = nn.Sequential(
-            nn.Linear(self.field_size , self.field_size, bias=False),
-            nn.ReLU()
+            nn.Linear(self.field_size , self.field_size, bias=False)
         )
         self.to(device)
 
@@ -58,12 +56,6 @@ class SimNonLocal(nn.Module):
         A = self.softmax(A) #(batch,reduction_size)
         # print(A.shape, inputs.shape)
         out = inputs * torch.unsqueeze(A, dim=2)
-        # out = inputs * A
-        # print(A.shape)
-        # print(A[0])
-        # A = torch.mean(inputs, dim=-1, out=None)
-        # A = self.excitation(A)
-        # out = inputs + torch.unsqueeze(A, dim=2)
 
         return inputs + out
 
@@ -105,7 +97,7 @@ Tongwen](https://arxiv.org/pdf/1905.09433.pdf)
         A = self.excitation(Z)
         V = torch.mul(inputs, torch.unsqueeze(A, dim=2))
 
-        return V
+        return inputs + V
 
 
 class FFM(nn.Module):
