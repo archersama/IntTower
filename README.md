@@ -14,7 +14,7 @@ python train_movielens_IntTower.py
 - [Dataset](#dataset)
 - [Environment Requirements](#environment-requirements)
 - [Quick Start](#quick-start)
-- [
+- [Performance](#performance)
 
 # [IntTower Description](#contents)
 
@@ -63,6 +63,8 @@ Pre-Ranking System
   # run training and evaluation example
   python train_movielens_IntTower.py
   ```
+ # [Performance](#contents)
+ ![avatar](./figure/performance.PNG)
 
 
 ## cite our work
