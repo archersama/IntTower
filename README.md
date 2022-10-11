@@ -36,22 +36,22 @@ Pre-Ranking System
     - Prepare hardware environment with CPU or GPU processor.
 - Framework
 - Requirements
-        - deepctr==0.9.0
-        - deepctr_torch==0.2.7
-        - deepmatch==0.2.0
-        - keras==2.8.0
-        - matplotlib==3.5.2
-        - numpy==1.21.4
-        - pandas==1.4.2
-        - pytorch_lightning==1.6.3
-        - scikit_learn==1.1.1
-        - tensorflow==2.8.0
-        - torch==1.10.0
-        - torchkeras==3.0.2
-        - torchsummary==1.5.1
-        - torchvision==0.12.0
-        - tqdm==4.51.0
-        - xgboost==1.6.1
+  - deepctr==0.9.0
+  - deepctr_torch==0.2.7
+  - deepmatch==0.2.0
+  - keras==2.8.0
+  - matplotlib==3.5.2
+  - numpy==1.21.4
+  - pandas==1.4.2
+  - pytorch_lightning==1.6.3
+  - scikit_learn==1.1.1
+  - tensorflow==2.8.0
+  - torch==1.10.0
+  - torchkeras==3.0.2
+  - torchsummary==1.5.1
+  - torchvision==0.12.0
+  - tqdm==4.51.0
+  - xgboost==1.6.1
 
 
 # [Quick Start](#contents)
