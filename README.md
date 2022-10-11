@@ -14,23 +14,7 @@ python train_movielens_IntTower.py
 - [Dataset](#dataset)
 - [Environment Requirements](#environment-requirements)
 - [Quick Start](#quick-start)
-- [Script Description](#script-description)
-    - [Script and Sample Code](#script-and-sample-code)
-    - [Script Parameters](#script-parameters)
-    - [Training Process](#training-process)
-        - [Training](#training)
-    - [Evaluation Process](#evaluation-process)
-        - [Evaluation](#evaluation)
-    - [Inference Process](#inference-process)
-        - [Export MindIR](#export-mindir)
-        - [Infer on Ascend310](#infer-on-ascend310)
-        - [result](#result)
-- [Model Description](#model-description)
-    - [Performance](#performance)
-        - [Training Performance](#training-performance)
-        - [Inference Performance](#inference-performance)
-- [Description of Random Situation](#description-of-random-situation)
-- [ModelZoo Homepage](#modelzoo-homepage)
+- [
 
 # [IntTower Description](#contents)
 
@@ -43,13 +27,14 @@ Pre-Ranking System
 # [Dataset](#contents)
 
 - [Movie-Lens-1M](https://grouplens.org/datasets/movielens/1m/)
+- [Amazon(eletro)](https://jmcauley.ucsd.edu/data/amazon/)
+- [Alibaba ads](https://tianchi.aliyun.com/dataset/dataDetail?dataId=56)
 
 # [Environment Requirements](#contents)
 
 - Hardware（CPU/GPU）
     - Prepare hardware environment with CPU or GPU processor.
 - Framework
-    - [MindSpore-1.8.1](https://www.mindspore.cn/install/en)
 - Requirements
         -deepctr==0.9.0
         -deepctr_torch==0.2.7
@@ -72,7 +57,7 @@ Pre-Ranking System
 # [Quick Start](#contents)
 
 
-- running on CPU
+- running on CPU or GPU
 
   ```python
   # run training and evaluation example
