@@ -1,7 +1,7 @@
 # Description
 Source code of Paper "IntTower: the Next Generation of  Two-Tower Model for Pre-ranking System"
 
-Accept by CIKM 2022 and DLP-KDD 2022 best paper
+Accept by CIKM 2022 and [DLP-KDD 2022 best paper](https://dlp-kdd2022.github.io/)
 ## Easy to use
 ``` shell
 pip install -r requirements.txt
