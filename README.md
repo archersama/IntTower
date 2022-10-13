@@ -1,7 +1,7 @@
 # Description
-Official Code of Paper "IntTower: the Next Generation of  Two-Tower Model for Pre-ranking System"
+Official Pytorch Version code of Paper "IntTower: the Next Generation of  Two-Tower Model for Pre-ranking System"
 
-[Mindspore Version](https://gitee.com/mindspore/models/tree/master/research/recommend/IntTower)
+[Other Mindspore Version](https://gitee.com/mindspore/models/tree/master/research/recommend/IntTower)
 
 Accept by CIKM 2022 and [DLP-KDD 2022 best paper](https://dlp-kdd2022.github.io/)
 ## Easy to use
