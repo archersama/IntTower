@@ -70,11 +70,6 @@ Pre-Ranking System
 
 ## cite our work
 ```
-@article{li2021exploring,
-  title={Exploring text-transformers in aaai 2021 shared task: Covid-19 fake news detection in english},
-  author={Li, Xiangyang and Xia, Yu and Long, Xiang and Li, Zheng and Li, Sujian},
-  journal={arXiv preprint arXiv:2101.02359},
-  year={2021}
-}
+padding
 ```
 
