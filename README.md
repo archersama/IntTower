@@ -72,6 +72,22 @@ Pre-Ranking System
 
 ## cite our work
 ```
-padding
+@inproceedings{10.1145/3511808.3557072,
+author = {Li, Xiangyang and Chen, Bo and Guo, Huifeng and Li, Jingjie and Zhu, Chenxu and Long, Xiang and Li, Sujian and Wang, Yichao and Guo, Wei and Mao, Longxia and Liu, Jinxing and Dong, Zhenhua and Tang, Ruiming},
+title = {IntTower: The Next Generation of Two-Tower Model for Pre-Ranking System},
+year = {2022},
+isbn = {9781450392365},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3511808.3557072},
+doi = {10.1145/3511808.3557072},
+abstract = {Scoring a large number of candidates precisely in several milliseconds is vital for industrial pre-ranking systems. Existing pre-ranking systems primarily adopt the two-tower model since the "user-item decoupling architecture" paradigm is able to balance the efficiency and effectiveness. However, the cost of high efficiency is the neglect of the potential information interaction between user and item towers, hindering the prediction accuracy critically. In this paper, we show it is possible to design a two-tower model that emphasizes both information interactions and inference efficiency. The proposed model, IntTower (short for Interaction enhanced Two-Tower), consists of Light-SE, FE-Block and CIR modules. Specifically, lightweight Light-SE module is used to identify the importance of different features and obtain refined feature representations in each tower. FE-Block module performs fine-grained and early feature interactions to capture the interactive signals between user and item towers explicitly and CIR module leverages a contrastive interaction regularization to further enhance the interactions implicitly. Experimental results on three public datasets show that IntTower outperforms the SOTA pre-ranking models significantly and even achieves comparable performance in comparison with the ranking models. Moreover, we further verify the effectiveness of IntTower on a large-scale advertisement pre-ranking system. The code of IntTower is publicly available https://gitee.com/mindspore/models/tree/master/research/recommend/IntTower.},
+booktitle = {Proceedings of the 31st ACM International Conference on Information &amp; Knowledge Management},
+pages = {3292–3301},
+numpages = {10},
+keywords = {pre-ranking system, recommender systems, neural networks},
+location = {Atlanta, GA, USA},
+series = {CIKM '22}
+}
 ```
 
