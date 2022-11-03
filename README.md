@@ -30,7 +30,7 @@ Pre-Ranking System
 # [Dataset](#contents)
 
 - [Movie-Lens-1M](https://grouplens.org/datasets/movielens/1m/)
-- [Amazon(eletro)](https://jmcauley.ucsd.edu/data/amazon/)
+- [Amazon(electronic)](https://jmcauley.ucsd.edu/data/amazon/)
 - [Alibaba ads](https://tianchi.aliyun.com/dataset/dataDetail?dataId=56)
 
 # [Environment Requirements](#contents)
