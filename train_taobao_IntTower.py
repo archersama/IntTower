@@ -219,8 +219,8 @@ if __name__ == "__main__":
                        patience=3, mode='max', baseline=None)
     mdckpt = ModelCheckpoint(filepath='fe_model_2.ckpt', monitor='val_auc',
                              mode='max', verbose=1, save_best_only=True, save_weights_only=True)
-    model = IntTower(user_feature_columns, item_feature_columns, field_dim= 8, task='binary', dnn_dropout = dropout,
-                     device=device,user_filed_size=9,item_filed_size=6)
+    model = IntTower(user_feature_columns, item_feature_columns, field_dim= 64, task='binary', dnn_dropout=dropout,
+           device=device, user_head=16,item_head=16,user_filed_size=9,item_filed_size=6)
 
     model.compile("adam", "binary_crossentropy", metrics=['auc', 'accuracy', 'logloss']
                   , lr=lr)
