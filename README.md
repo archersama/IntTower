@@ -90,7 +90,7 @@ Pre-Ranking System](https://arxiv.org/abs/2210.09890)
     item_rep = torch.reshape(item_embedding, (-1, item_fea_col, item_embedding_dim[0]))
     
     return (user_rep @ item_rep.permute(0, 2, 1)).max(2).values.sum(1)
- ```
+  ```
   
   
   
