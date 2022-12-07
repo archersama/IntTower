@@ -71,6 +71,17 @@ Pre-Ranking System](https://arxiv.org/abs/2210.09890)
  ![avatar](./figure/performance.PNG)
 
 
+- Compare with other model 
+
+We supply 8 models to compare inttower, you can change your model such as:
+
+'''python
+
+from model.dcn import DCN
+model = DCN(linear_feature_columns, dnn_feature_columns, task='binary', dnn_dropout=dropout,
+                    device=device)
+'''
+
 ## cite our work
 ```
 @inproceedings{10.1145/3511808.3557072,
