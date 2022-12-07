@@ -67,20 +67,19 @@ Pre-Ranking System](https://arxiv.org/abs/2210.09890)
   pip install -r requirements.txt
   python train_movielens_IntTower.py
   ```
- # [Performance](#contents)
- ![avatar](./figure/performance.PNG)
-
-
 - Compare with other model 
 
 We supply 8 models to compare inttower, you can change your model such as:
 
-'''python
+```python
 
 from model.dcn import DCN
 model = DCN(linear_feature_columns, dnn_feature_columns, task='binary', dnn_dropout=dropout,
                     device=device)
-'''
+```
+  
+ # [Performance](#contents)
+ ![avatar](./figure/performance.PNG)
 
 ## cite our work
 ```
