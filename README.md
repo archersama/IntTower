@@ -3,7 +3,7 @@ Official Pytorch Version code of CIKM 2022 Paper "IntTower: the Next Generation 
 
 [Other Mindspore Version](https://gitee.com/mindspore/models/tree/master/research/recommend/IntTower)
 
-Accept by CIKM 2022 and [DLP-KDD 2022 best paper](https://dlp-kdd2022.github.io/)
+Accept by CIKM 2022 and [DLP-KDD 2022 workshop best paper](https://dlp-kdd2022.github.io/)
 ## Easy to use
 ``` shell
 pip install -r requirements.txt
