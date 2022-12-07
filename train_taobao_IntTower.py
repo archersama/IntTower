@@ -137,12 +137,12 @@ def setup_seed(seed):
 if __name__ == "__main__":
     # %%
 
-    embedding_dim = 64
+    embedding_dim = 32
     epoch = 15
     batch_size = 2048
     dropout = 0.5
     seed = 1023
-    lr = 0.001
+    lr = 0.0001
 
     print("1")
 
@@ -219,8 +219,8 @@ if __name__ == "__main__":
                        patience=3, mode='max', baseline=None)
     mdckpt = ModelCheckpoint(filepath='fe_model_2.ckpt', monitor='val_auc',
                              mode='max', verbose=1, save_best_only=True, save_weights_only=True)
-    model = IntTower(user_feature_columns, item_feature_columns, field_dim= 64, task='binary', dnn_dropout=dropout,
-           device=device, user_head=16,item_head=16,user_filed_size=9,item_filed_size=6)
+    model = IntTower(user_feature_columns, item_feature_columns, field_dim= 16, task='binary', dnn_dropout=dropout,
+           device=device, user_head=4,item_head=4,user_filed_size=9,item_filed_size=6)
 
     model.compile("adam", "binary_crossentropy", metrics=['auc', 'accuracy', 'logloss']
                   , lr=lr)
