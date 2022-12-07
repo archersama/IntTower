@@ -64,6 +64,7 @@ Pre-Ranking System](https://arxiv.org/abs/2210.09890)
 
   ```python
   # run training and evaluation example
+  pip install -r requirements.txt
   python train_movielens_IntTower.py
   ```
  # [Performance](#contents)
