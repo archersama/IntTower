@@ -83,6 +83,7 @@ Pre-Ranking System](https://arxiv.org/abs/2210.09890)
   Just change preprocessing/utils.py fe_score function
   
   ```python
+  
   def fe_score(user_rep, item_rep, user_fea_col, item_fea_col, user_embedding_dim, item_embedding_dim):
     user_embedding, item_embedding  = user_rep[0],item_rep[0]
     user_rep = torch.reshape(user_embedding, (-1, user_fea_col, user_embedding_dim[0]))
