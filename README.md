@@ -27,6 +27,71 @@ Specifically, lightweight Light-SE module is used to identify the importance of 
 [Paper](https://dl.acm.org/doi/abs/10.1145/3459637.3481915): Xiangyang Li*, Bo Chen*, Huifeng Guo, Jingjie Li, Chenxu Zhu, Xiang Long, Yichao Wang, Wei Guo, Longxia Mao, Jinxing Liu, Zhenhua Dong, Ruiming Tang. [IntTower: the Next Generation of Two-Tower Model for
 Pre-Ranking System](https://arxiv.org/abs/2210.09890)
 
+- Light-SE Module
+
+  ```python
+  class LightSE(nn.Module):
+    """LightSELayer used in IntTower.
+      Input shape
+        - A list of 3D tensor with shape: ``(batch_size,filed_size,embedding_size)``.
+      Output shape
+        - A list of 3D tensor with shape: ``(batch_size,filed_size,embedding_size)``.
+      Arguments
+        - **filed_size** : Positive integer, number of feature groups.
+        - **reduction_ratio** : Positive integer, dimensionality of the
+         attention network output space.
+        - **seed** : A Python integer to use as random seed.
+      References
+
+    """
+
+    def __init__(self, field_size, seed=1024, device='cpu',embedding_size=32):
+        super(LightSE, self).__init__()
+        self.seed = seed
+        self.softmax = nn.Softmax(dim=1)
+        self.field_size = field_size
+        self.embedding_size = embedding_size
+        self.excitation = nn.Sequential(
+            nn.Linear(self.field_size , self.field_size, bias=False)
+        )
+        self.to(device)
+
+    def forward(self, inputs):
+        if len(inputs.shape) != 3:
+            raise ValueError(
+                "Unexpected inputs dimensions %d, expect to be 3 dimensions" % (len(inputs.shape)))
+
+
+        Z = torch.mean(inputs, dim=-1, out=None)
+        A = self.excitation(Z) #(batch,reduction_size)
+        A = self.softmax(A) #(batch,reduction_size)
+        # print(A.shape, inputs.shape)
+        out = inputs * torch.unsqueeze(A, dim=2)
+
+        return inputs + out
+    ```
+  - FE Score
+    
+    ```python
+    def fe_score(user_rep, item_rep, user_fea_col, item_fea_col, user_embedding_dim, item_embedding_dim):
+
+    score = []
+
+
+
+    for i in range(len(user_embedding_dim)):
+
+        user_temp = torch.reshape(user_rep[i], (-1, user_fea_col, user_embedding_dim[i]))
+        item_temp = torch.reshape(item_rep[-1], (-1, item_fea_col, item_embedding_dim[i]))
+
+        score.append((user_temp @ item_temp.permute(0, 2, 1)).max(2).values.sum(1))
+
+    score = torch.stack(score).transpose(1, 0)
+
+    return torch.sum(score, 1)
+    ```
+  
+
 # [Dataset](#contents)
 
 - [Movie-Lens-1M](https://grouplens.org/datasets/movielens/1m/)
@@ -76,8 +141,10 @@ Pre-Ranking System](https://arxiv.org/abs/2210.09890)
   from model.dcn import DCN
   model = DCN(linear_feature_columns, dnn_feature_columns, task='binary', dnn_dropout=dropout,
                     device=device)
-  ```
+  ```  
+
 - Accelerate
+
   For online inference , you can only use the last layer FE-Module to compute MaxSim Score.
   
   Just change preprocessing/utils.py fe_score function
