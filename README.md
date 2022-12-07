@@ -74,21 +74,13 @@ Pre-Ranking System](https://arxiv.org/abs/2210.09890)
     
     ```python
     def fe_score(user_rep, item_rep, user_fea_col, item_fea_col, user_embedding_dim, item_embedding_dim):
-
-    score = []
-
-
-
-    for i in range(len(user_embedding_dim)):
-
+      score = []
+      for i in range(len(user_embedding_dim)):
         user_temp = torch.reshape(user_rep[i], (-1, user_fea_col, user_embedding_dim[i]))
         item_temp = torch.reshape(item_rep[-1], (-1, item_fea_col, item_embedding_dim[i]))
-
         score.append((user_temp @ item_temp.permute(0, 2, 1)).max(2).values.sum(1))
-
-    score = torch.stack(score).transpose(1, 0)
-
-    return torch.sum(score, 1)
+      score = torch.stack(score).transpose(1, 0)
+      return torch.sum(score, 1)
     ```
   
 
