@@ -1,5 +1,5 @@
 # Description
-Official Pytorch Version code of CIKM 2022 Paper "IntTower: the Next Generation of  Two-Tower Model for Pre-ranking System"
+Official Pytorch Version code of CIKM 2022 Paper ["IntTower: the Next Generation of  Two-Tower Model for Pre-ranking System"](https://arxiv.org/abs/2210.09890)
 
 [Other Mindspore Version](https://gitee.com/mindspore/models/tree/master/research/recommend/IntTower)
 
