@@ -30,45 +30,35 @@ Pre-Ranking System](https://arxiv.org/abs/2210.09890)
 - Light-SE Module
 
   ```python
-  class LightSE(nn.Module):
-    """LightSELayer used in IntTower.
-      Input shape
-        - A list of 3D tensor with shape: ``(batch_size,filed_size,embedding_size)``.
-      Output shape
-        - A list of 3D tensor with shape: ``(batch_size,filed_size,embedding_size)``.
-      Arguments
-        - **filed_size** : Positive integer, number of feature groups.
-        - **reduction_ratio** : Positive integer, dimensionality of the
-         attention network output space.
-        - **seed** : A Python integer to use as random seed.
-      References
-
+class LightSE(nn.Module):
+  """LightSELayer used in IntTower.
+    Input shape
+      - A list of 3D tensor with shape: ``(batch_size,filed_size,embedding_size)``.
+    Output shape
+      - A list of 3D tensor with shape: ``(batch_size,filed_size,embedding_size)``.
+    Arguments
+      - **filed_size** : Positive integer, number of feature groups.
     """
 
-    def __init__(self, field_size, seed=1024, device='cpu',embedding_size=32):
-        super(LightSE, self).__init__()
-        self.seed = seed
-        self.softmax = nn.Softmax(dim=1)
-        self.field_size = field_size
-        self.embedding_size = embedding_size
-        self.excitation = nn.Sequential(
-            nn.Linear(self.field_size , self.field_size, bias=False)
-        )
-        self.to(device)
+  def __init__(self, field_size, embedding_size=32):
+      super(LightSE, self).__init__()
+      self.softmax = nn.Softmax(dim=1)
+      self.field_size = field_size
+      self.embedding_size = embedding_size
+      self.excitation = nn.Sequential(
+          nn.Linear(self.field_size, self.field_size)
+      )
 
-    def forward(self, inputs):
-        if len(inputs.shape) != 3:
-            raise ValueError(
-                "Unexpected inputs dimensions %d, expect to be 3 dimensions" % (len(inputs.shape)))
+  def forward(self, inputs):
+      if len(inputs.shape) != 3:
+          raise ValueError(
+              "Unexpected inputs dimensions %d, expect to be 3 dimensions" % (len(inputs.shape)))
+      Z = torch.mean(inputs, dim=-1, out=None)
+      A = self.excitation(Z) #(batch,reduction_size)
+      A = self.softmax(A) #(batch,reduction_size)
+      out = inputs * torch.unsqueeze(A, dim=2)
+      return inputs + out
 
-
-        Z = torch.mean(inputs, dim=-1, out=None)
-        A = self.excitation(Z) #(batch,reduction_size)
-        A = self.softmax(A) #(batch,reduction_size)
-        # print(A.shape, inputs.shape)
-        out = inputs * torch.unsqueeze(A, dim=2)
-
-        return inputs + out
     ```
   - FE Score
     
