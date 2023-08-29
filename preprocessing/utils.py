@@ -55,33 +55,53 @@ def dual_augmented_loss(y, user_embedding, item_embedding, user_augment_vector, 
 
     return loss_u,loss_v
 
-
-
 def contrast_loss(y, user_embedding, item_embedding):
-    # print(user_embedding.shape)
+    # Normalize the embeddings
     user_embedding = torch.nn.functional.normalize(user_embedding, dim=-1)
     item_embedding = torch.nn.functional.normalize(item_embedding, dim=-1)
-    #
-    pos = 0
-    all = 0
-    tau = 0.001
-    pos_index = y.expand(y.shape[0], item_embedding.shape[1])
 
-    m = torch.nn.ZeroPad2d((0, item_embedding.shape[1] - user_embedding.shape[1], 0, 0))
+    # Set temperature parameter
+    tau = 0.07
 
-    user_embedding = m(user_embedding)
+    # Compute similarity scores
+    scores = torch.matmul(user_embedding, item_embedding.t()) / tau
 
-    # print(user_embedding.shape,item_embedding.shape,pos_index.shape)
+    # Subtract max for numerical stability
+    scores -= scores.max()
 
-    pos += torch.mean(user_embedding * item_embedding * pos_index) / tau
+    exp_scores = scores.exp()
 
-    all += torch.mean(user_embedding * item_embedding) / tau
+    # Compute the loss
+    loss = torch.log(exp_scores.sum(dim=1)) - scores[range(scores.shape[0]), y]
+    loss = loss.mean()
+
+    return loss
+
+# def contrast_loss(y, user_embedding, item_embedding):
+#     # print(user_embedding.shape)
+#     user_embedding = torch.nn.functional.normalize(user_embedding, dim=-1)
+#     item_embedding = torch.nn.functional.normalize(item_embedding, dim=-1)
+#     #
+#     pos = 0
+#     all = 0
+#     tau = 0.001
+#     pos_index = y.expand(y.shape[0], item_embedding.shape[1])
+
+#     m = torch.nn.ZeroPad2d((0, item_embedding.shape[1] - user_embedding.shape[1], 0, 0))
+
+#     user_embedding = m(user_embedding)
+
+#     # print(user_embedding.shape,item_embedding.shape,pos_index.shape)
+
+#     pos += torch.mean(user_embedding * item_embedding * pos_index) / tau
+
+#     all += torch.mean(user_embedding * item_embedding) / tau
 
 
 
-    contras = -torch.log(torch.exp(pos) / torch.exp(all))
-    # print(contras)
-    return contras
+#     contras = -torch.log(torch.exp(pos) / torch.exp(all))
+#     # print(contras)
+#     return contras
 
 
 def col_score(user_rep, item_rep, user_fea_col):
