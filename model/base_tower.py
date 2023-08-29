@@ -174,7 +174,7 @@ class BaseTower(nn.Module):
                     reg_loss = self.get_regularization_loss()
 
                     # total_loss = loss + reg_loss + self.aux_loss + contras
-                    total_loss = loss + reg_loss + self.aux_loss + contras
+                    total_loss = loss + reg_loss + self.aux_loss 
                     # print(total_loss, contras, loss)
 
                     loss_epoch += loss.item()
